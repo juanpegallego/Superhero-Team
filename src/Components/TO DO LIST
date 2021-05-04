@@ -1,0 +1,20 @@
+
+
+
+1)
+chequear en cada pagina si esta logeado con token, sino devolver a login.
+
+2)
+    a)info de equipo. total de powerstats. 
+    b)mostrar powerstat mas alto arriba
+    c)peso y altura promedio
+3)
+hacer andar el buscador para agregar nuevos heroes.
+mostrar nombre y imagen de cada uno 
+el buscador tiene que chequear si ya hay 3 buenos o 3 malos.
+
+4)
+hacer andar el boton para eliminar el heroe
+
+5) 
+hacer andar el toggle para mostrar u ocultar info adicional
