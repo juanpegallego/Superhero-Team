@@ -7,14 +7,12 @@ import FetchData from './FetchData';
 const  Hero = (props) => {  
   
   const [isActive, setActive] = useState("hide");  
-  const handleToggle = () => {
-    setActive(!isActive)
-  }
+  const handleToggle = () => {setActive(!isActive)}
   
-  const { info } = props;
+  const { info, team } = props;
    
 
-       return (
+    return (
         
         <div className='card-container'>
          
@@ -39,13 +37,13 @@ const  Hero = (props) => {
             /* eliminar={eliminar}   */
           />
  
-          <FetchData
+          {/* <FetchData
           className={isActive ? "hide" : "lista-datos-extra"}
-          heroeId={1}
-          /> 
+          heroeId={team}
+          />    */}
             
         </div>
-        
+      
       ); 
     
        

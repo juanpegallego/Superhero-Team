@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchResultItems from './SearchResultItems';
 
 
 function SearchResults(props){
-    const {superHeroeData} = props;
+    const {superHeroeData, agregarId} = props;
+    const [team, setTeam] = useState([]);
+    
+
+    const agregarTeam = (a) =>{
+    if(team.length < 6){
+            setTeam([...team, a]);
+        }
+       else{
+           alert('Alcanzaste el maximo de 6 heroes')
+       } 
+     
+    agregarId(team)     
+        
+    }
+    
+
 
     return(
         <div className="search-container" >
             {superHeroeData.map(superhero =>
-                <SearchResultItems data={superhero}
+                <SearchResultItems 
+                agregarTeam={agregarTeam}
+                data={superhero}
                 key={superhero.id} />
             )}
         

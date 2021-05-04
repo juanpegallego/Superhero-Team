@@ -1,7 +1,9 @@
-import React, { useState   } from 'react'
+import React, { useState } from 'react'
 
 function FetchData(props) {
-    const url = `https://superheroapi.com/api/499066611225583/${props.heroeId}`; 
+    let url = `https://superheroapi.com/api/499066611225583/${props.heroeId}`; 
+
+    const { team } = props;
     
     const [heroe, setHeroe] = useState({
         name: " ",
@@ -19,14 +21,17 @@ function FetchData(props) {
        }
        
         function getData(x){
-         fetch(x)
+         fetch(x, {mode:'cors'})
          .then(handleErrors)  
          .then(res => res.json())
          .then(data => setHeroe(data))
          .catch(err => console.log(err));
        }
+       if (!(team === undefined)){
+         getData(url)
+       }
        
-       getData(url)
+       
 
     return (
 

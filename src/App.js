@@ -20,7 +20,6 @@ import SearchResults from './Components/SearchResults';
 
 
 function App() {
-  
   const [info, setInfo] = useState({
     name: " ",
     image:" ",
@@ -30,45 +29,62 @@ function App() {
     work:" "
   });
   const [superHeroeData, setSuperHeroeData] = useState([]);
-  const [searchText, setSearchText] = useState(''); 
+  const [searchText, setSearchText] = useState('');  
 
+  const loguearse = () => {window.location ='/login'; }
+  const chequeoConstante = () => { setInterval(chequeoInicialToken, 10000)} 
+  const chequeoInicialToken = () => {
+    if (!(window.localStorage.getItem('tokenId'))){    
+        alert('no estas logueado, seras redirigido');
+        setTimeout(loguearse, 2000)
+      }
+    }
+window.onload = setTimeout(chequeoConstante, 5000);
+  
+  
+
+    
+  
+
+  //------- Buscador------
     async function searchSuperHeroes(){
-        const response = await fetch(`https://superheroapi.com/api/499066611225583/search/${searchText}`)
+        const response = await fetch(`https://superheroapi.com/api/499066611225583/search/${searchText}`, {
+          mode:'cors'})
         const data = await response.json();
         
         setSuperHeroeData(data.results);
-        
-        
-    
+      
     }
-    /* function agregarId(a){
-      let  url = `https://superheroapi.com/api/499066611225583/${a}`;
-      getData(url);
-    }   */
-    
+    function handleChange(e){
+      const searchTerm = e.target.value;
+      setSearchText(searchTerm);
+      if (searchTerm.length > 3){
+          searchSuperHeroes()
+      }
+    }
+     
+    //---------- H O M E --------
     function handleErrors(res) {
       if (!(res.ok)) throw new Error(res.error);
       return res;
     }
     
-     function getData(url){
-      fetch(url)
+     async function getData(url){
+      await fetch(url, {mode:'cors'})
       .then(handleErrors)   
       .then(res => res.json())
       .then(data => setInfo(data))    
       .catch(err => console.log(err));     
       
-  
       }
+      function agregarId(team){
+      console.log(team)
+      let  url = `https://superheroapi.com/api/499066611225583/${team}`;
+      getData(url); 
+      }   
     
 
-    function handleChange(e){
-        const searchTerm = e.target.value;
-        setSearchText(searchTerm);
-        if (searchTerm.length > 3){
-            searchSuperHeroes()
-        }
-      }
+    
 
     
   
@@ -96,6 +112,7 @@ function App() {
           /> 
           <SearchResults
           superHeroeData={superHeroeData}
+          agregarId={agregarId}
           />
         </Route>
 
@@ -103,7 +120,7 @@ function App() {
           <HomeInfo/>
           <Team
           info={info}          
-          
+          agregarId={agregarId}
           />
         </Route>
 
