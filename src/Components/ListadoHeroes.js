@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 
 const Listado = (props) => {
-const {handleChange, searchText} = props;
-      
+const {handleChange, searchText} = props;      
 
     return ( 
         <div className='buscador-container' >
@@ -18,12 +17,7 @@ const {handleChange, searchText} = props;
                         >
 
                 </input>
-
-            
-                
             </form>
-            
-      
         </div>
      );
 }

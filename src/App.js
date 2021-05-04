@@ -1,5 +1,7 @@
+//--estilos
+import './Estilos/app.scss'
+//--imports
 import React,{useState} from 'react';
-import Hero from './Components/Hero'
 import Listado from './Components/ListadoHeroes';
 import Form from './Components/Form';
 import {
@@ -10,8 +12,7 @@ import {
 } from "react-router-dom";
 import Landing from './Components/Landing';
 import HomeInfo from './Components/HomeInfo';
-import Nav from './Components/Nav'
-import './Estilos/app.scss'
+import Nav from './Components/Nav';
 import Team from './Components/HeroesTeam';
 import SearchResults from './Components/SearchResults';
 
@@ -19,7 +20,15 @@ import SearchResults from './Components/SearchResults';
 
 
 function App() {
-
+  
+  const [info, setInfo] = useState({
+    name: " ",
+    image:" ",
+    powerstats:" " ,
+    biography:" ",
+    appearance:" ",
+    work:" "
+  });
   const [superHeroeData, setSuperHeroeData] = useState([]);
   const [searchText, setSearchText] = useState(''); 
 
@@ -27,12 +36,32 @@ function App() {
         const response = await fetch(`https://superheroapi.com/api/499066611225583/search/${searchText}`)
         const data = await response.json();
         
-        setSuperHeroeData(data.results)
-    
+        setSuperHeroeData(data.results);
+        
+        
     
     }
+    /* function agregarId(a){
+      let  url = `https://superheroapi.com/api/499066611225583/${a}`;
+      getData(url);
+    }   */
     
+    function handleErrors(res) {
+      if (!(res.ok)) throw new Error(res.error);
+      return res;
+    }
     
+     function getData(url){
+      fetch(url)
+      .then(handleErrors)   
+      .then(res => res.json())
+      .then(data => setInfo(data))    
+      .catch(err => console.log(err));     
+      
+  
+      }
+    
+
     function handleChange(e){
         const searchTerm = e.target.value;
         setSearchText(searchTerm);
@@ -40,18 +69,12 @@ function App() {
             searchSuperHeroes()
         }
       }
-  
+
     
+  
+      
 
-
-  /* ---Esta funcion te manda a logearte cuando apretas ingresar en el landing---*/
- function handleclickLanding(){
-   return(
-     <Redirect to="/login"/> 
-   )    
- }
-
- 
+    
   
   return (
     <div className="App">
@@ -67,6 +90,7 @@ function App() {
 
         <Route path="/buscador">
           <Listado  
+          /* agregarId={agregarId} */
           searchText={searchText} 
           handleChange={handleChange}
           /> 
@@ -78,18 +102,13 @@ function App() {
         <Route path="/home" > 
           <HomeInfo/>
           <Team
-          heroe1={10}
-          heroe2={202}
-          heroe3={300}
-          heroe4={400}
-          heroe5={500}
-          heroe6={600}
+          info={info}          
           
           />
         </Route>
 
         <Route path="/">
-          <Landing onClick={handleclickLanding}/>   
+          <Landing onClick={<Redirect to="/login"/>}/>   
         </Route>      
 
       </Switch>         

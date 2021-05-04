@@ -4,49 +4,16 @@ import ButtonContainer from './ButtonContainer';
 import FetchData from './FetchData';
 
 
-const  Hero = (props) => {
-  const url = `https://superheroapi.com/api/499066611225583/${props.heroeId}`;
-
-  const equipo = [];
-  const [isActive, setActive] = useState("hide");
+const  Hero = (props) => {  
   
-  const [info, setInfo] = useState({
-    name: " ",
-    image:" ",
-    powerstats:" " ,
-    biography:" ",
-    appearance:" ",
-    work:" "
-  });
-  
- 
-  getData(url); 
-  
-  
-
+  const [isActive, setActive] = useState("hide");  
   const handleToggle = () => {
     setActive(!isActive)
   }
-   
- 
-  function handleErrors(res) {
-    if (!(res.ok)) throw new Error(res.error);
-    return res;
-  }
   
-   function getData(x){
-    fetch(x)
-    .then(handleErrors)   
-    .then(res => res.json())
-    .then(data => setInfo(data))    
-    .catch(err => console.log(err));
-    equipo.push(info.name)
-    
-
-    }
-    console.log(equipo)
+  const { info } = props;
    
- 
+
        return (
         
         <div className='card-container'>
@@ -62,7 +29,6 @@ const  Hero = (props) => {
             speed={info.powerstats.speed}
             durability={info.powerstats.durability}
             power={info.powerstats.power} 
-
             />  
         
           
@@ -71,11 +37,11 @@ const  Hero = (props) => {
           detalle={handleToggle}
           boton={isActive ? "Ver Detalle  " : "_"}
             /* eliminar={eliminar}   */
-            />
+          />
  
           <FetchData
           className={isActive ? "hide" : "lista-datos-extra"}
-          heroeId={props.heroeId}
+          heroeId={1}
           /> 
             
         </div>

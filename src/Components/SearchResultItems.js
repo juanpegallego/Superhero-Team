@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const SearchResultItems = (props) => {
     const {data} = props;
-
+    const [team, setTeam] = useState([]);
+    
+    const agregarTeam = () =>{
+        
+        if (team.length <= 6){
+            setTeam([...team, data.id]);
+            
+        }
+        else{
+            alert('Tu equipo esta completo');
+            
+        }
+    }
     
     return ( 
 
@@ -18,8 +30,7 @@ const SearchResultItems = (props) => {
 
                 <div className="right">
                     <div className="name">
-                        <h1> {data.name}</h1>
-                        
+                        <h1> {data.name} </h1>                        
                     </div>
                     <div className="powerstats">
                         <ul>
@@ -28,7 +39,10 @@ const SearchResultItems = (props) => {
                             <li>Speed:<span>{data.powerstats.speed}</span> </li>
                             <li>intelligence:<span>{data.powerstats.intelligence}</span> </li>
                         </ul>
-                        <button className="btn btn-success">Agregar</button>
+                        <button className="btn btn-success"
+                                onClick={agregarTeam}
+                                >Agregar
+                        </button>
                     </div>
                 </div>
             

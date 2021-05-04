@@ -17,19 +17,34 @@ const Card = (props) => {
            
             <ul>
                 <li>
-                    Intelligence: <span>   {props.intel} </span> 
+                    Intelligence: 
+                    <span>
+                        {props.intel} 
+                    </span> 
                 </li>
                 <li>
-                    Strength: <span>{props.strength} </span>
+                    Strength: 
+                    <span>
+                        {props.strength} 
+                    </span>
                 </li>
                 <li>
-                    Speed:<span>{props.speed} </span>
+                    Speed:
+                    <span>
+                        {props.speed} 
+                    </span>
                 </li>
                 <li>
-                    Durability: <span> {props.durability}</span>
+                    Durability: 
+                    <span> 
+                        {props.durability}
+                    </span>
                 </li>
                 <li>
-                    Power:<span>{props.power} </span> 
+                    Power:
+                    <span>
+                        {props.power} 
+                    </span> 
                 </li>
             </ul>
 
