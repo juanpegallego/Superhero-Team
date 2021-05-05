@@ -8,15 +8,15 @@ function SearchResults(props){
     
 
     const agregarTeam = (a) =>{
-    if(team.length < 6){
-            setTeam([...team, a]);
-        }
-       else{
-           alert('Alcanzaste el maximo de 6 heroes')
-       } 
-     
-    agregarId(team)     
+        if(team.length < 6){
+                setTeam([...team, a]);                
+            }
+        else{
+            alert('Alcanzaste el maximo de 6 heroes')
+        } 
         
+        agregarId(team);     
+        window.localStorage.setItem('team', team);
     }
     
 

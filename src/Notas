@@ -36,3 +36,19 @@ postData('https://example.com/answer', { answer: 42 })
         
       }); */
  
+
+
+
+
+   //------- Buscador------
+    async function searchSuperHeroes(){
+        const response = await fetch(`https://superheroapi.com/api/499066611225583/search/${searchText}`, {
+          mode:'cors'})
+        const data = await response.json();
+        
+        setSuperHeroeData(data.results);
+      
+
+
+        
+    }

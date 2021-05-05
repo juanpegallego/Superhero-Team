@@ -15,12 +15,13 @@ import HomeInfo from './Components/HomeInfo';
 import Nav from './Components/Nav';
 import Team from './Components/HeroesTeam';
 import SearchResults from './Components/SearchResults';
-
+import Hero from './Components/Hero';
 
 
 
 function App() {
   const [info, setInfo] = useState({
+    id:" ",
     name: " ",
     image:" ",
     powerstats:" " ,
@@ -30,7 +31,6 @@ function App() {
   });
   const [superHeroeData, setSuperHeroeData] = useState([]);
   const [searchText, setSearchText] = useState('');  
-
   const loguearse = () => {window.location ='/login'; }
   const chequeoConstante = () => { setInterval(chequeoInicialToken, 10000)} 
   const chequeoInicialToken = () => {
@@ -48,19 +48,17 @@ window.onload = setTimeout(chequeoConstante, 5000);
 
   //------- Buscador------
     async function searchSuperHeroes(){
-        const response = await fetch(`https://superheroapi.com/api/499066611225583/search/${searchText}`, {
+        await fetch(`https://superheroapi.com/api/499066611225583/search/${searchText}`, {
           mode:'cors'})
-        const data = await response.json();
-        
-        setSuperHeroeData(data.results);
-      
+          .then(handleErrors)
+          .then(res => res.json())
+          .then(data => setSuperHeroeData(data.results))
+          .catch(err => console.log(err));     
     }
     function handleChange(e){
       const searchTerm = e.target.value;
       setSearchText(searchTerm);
-      if (searchTerm.length > 3){
-          searchSuperHeroes()
-      }
+      if (searchTerm.length > 3){searchSuperHeroes()}
     }
      
     //---------- H O M E --------
@@ -77,14 +75,18 @@ window.onload = setTimeout(chequeoConstante, 5000);
       .catch(err => console.log(err));     
       
       }
-      function agregarId(team){
-      console.log(team)
-      let  url = `https://superheroapi.com/api/499066611225583/${team}`;
-      getData(url); 
+      function agregarId(team){       
+        console.log(team)
+        if (!(team.length === 0)){
+          let  url = `https://superheroapi.com/api/499066611225583/${team}`;
+          getData(url); 
+          
+          
+      }
+      
       }   
     
-
-    
+      
 
     
   
@@ -116,11 +118,12 @@ window.onload = setTimeout(chequeoConstante, 5000);
           />
         </Route>
 
+        
         <Route path="/home" > 
           <HomeInfo/>
           <Team
-          info={info}          
-          agregarId={agregarId}
+          info={info} 
+          team={team}     
           />
         </Route>
 
