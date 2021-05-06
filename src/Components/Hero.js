@@ -7,7 +7,7 @@ import FetchData from './FetchData';
 const  Hero = (props) => {    
   const [isActive, setActive] = useState("hide");  
   const handleToggle = () => {setActive(!isActive)};  
-  const { info } = props;
+  const { info } = props; 
 
 
    
@@ -30,10 +30,10 @@ const  Hero = (props) => {
               boton={isActive ? "Ver Detalle  " : "_"}
                 /* eliminar={eliminar}   */
             />
-            {/* <FetchData
+            <FetchData
               className={isActive ? "hide" : "lista-datos-extra"}
               heroeId={info.id}
-            />   */}  
+            />   
         </div>      
       );    
   }

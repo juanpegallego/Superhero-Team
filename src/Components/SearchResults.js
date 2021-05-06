@@ -16,6 +16,7 @@ function SearchResults(props){
         } 
         
         agregarId(team);     
+        console.log(team)
         window.localStorage.setItem('team', team);
     }
     

@@ -366,44 +366,125 @@ h2{
   }
 
   /*----------------------------------------FORM LOGIN-----------------------------------*/
+  
   .login-container{
-    
     width: 100%;
-  }
-  .form-title{
-    text-align: center;
-    position: absolute;
-    top: 220px;
-    left: 41.5%;
-    color: white;
-    z-index: 2;
-    
-  }
-  .form-control{
-    border: none;
-    width:30%;
+    height: 500px;            
     position: relative;
-    background-color: $col_principal;
+    top: 100px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: auto;
-    height: 250px;
-    input{
-        width: 80%;
-        background-color: white;
-        height: 40px;
-        top: 30px;
-        position: relative;
-      }
-      button{
-        width: 40%;
-        position: relative;
-        top: 40px;
-      }
-  }
- 
+    flex-direction: column;
+    form{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        /* background-color: rgba(70, 36, 163, 0.685);  */
+        background-color: $col_principal;
+        width: 400px;
+        overflow: hidden;
+        height: 80%;
+        
+        padding: 20px;
+        background-image: url(../Imagenes/img3.png);
+        background-size: 0%;
+        background-position-x: right;
+        background-position-y: top;
+        background-repeat: no-repeat;
+        background-blend-mode: exclusion;
+        transition: all 1.5s;
+        border-radius: 10px;
+        
+        border: none;
+        box-shadow: 0px 0px 30px 10px $col_principal_hover;
+        
+        &:hover{
+            background-size: 70%;
+            background-blend-mode: overlay;
+            background-position: center;            
+            transition: all .9s;
+        }
+        span{
+            width: 70%;
+            color: white;
+            text-align: left;
+            position: relative;
+            top: 20px;
+            
+        }
+        input{
+            border: none;
+            width: 70%;
+            height: 30px;
+            outline: none;
+            background-color: transparent;
+            border-bottom: 2px solid white; 
+            color: white;
+            font-size: 1.3rem;
+            font-weight: lighter;
+            border-radius: 0px;
+            &:focus{
+              background-color: transparent;
+              border: none;
+              outline: none;
+            }
+            &:active{
+              background-color: transparent;
+            }
+            &::placeholder{
+                text-align: center;
+                font-size: .9rem;
+                font-family: 'Roboto condensed', 'Courier';
+                color: white;
+                font-weight: lighter;
+              
+            }
+        }
+        .btn-send{
+            height: 40px;
+            width: 150px;
+            border-radius: 0px;
+            border: none;
+            background-color: transparent ;
+            color: white;
+            border: 2px solid white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            position: relative;
+            top: 30px;            
+            font-family: 'Roboto condensed', 'Courier';
+
+            &:hover{
+                background-color: white;
+                color: black;
+
+            }
+        }
+        .forgot{            
+            color: rgb(255, 208, 0);
+            text-decoration: none;
+            font-size: .8rem;
+            display: inline;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            position: relative;
+            top: 25px;
+            &:hover &::before{
+              content: "hola";
+              position: absolute;
+              top: 0px;
+              left: 50px;
+              background-color: red;
+              width: 200px;
+              height: 50px;
+            }
+        }
+    }
+} 
+
   
   /*-------------------------------------------------FORM BUSCADOR----------------------------------------*/
 

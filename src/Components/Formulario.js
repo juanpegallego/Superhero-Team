@@ -18,12 +18,11 @@ function Formulario(props) {
 
     return (
         <div className='login-container'>
-            <h1 className='form-title'> Iniciar Sesion </h1>
-
+            
             <form onSubmit={onSubmit(datos)} 
                 className='form form-control' >
-                <input 
-                placeholder='challenge@alkemy.org'
+                <span>Correo Electronico</span>
+                <input
                 type="email"
                 name="email"
                 className="form-control my-2"
@@ -31,9 +30,8 @@ function Formulario(props) {
                 />
                 
 
-
+                <span>Password</span>
                 <input 
-                placeholder='react'
                 type="password"
                 name="password"
                 className="form-control my-2"
@@ -42,8 +40,11 @@ function Formulario(props) {
                 
 
 
-                <button className="btn btn-primary" >
+                <button className="btn-send">
                 Enviar
+                </button>
+                <button className='forgot'>
+                    No recordas tu clave?
                 </button>
             </form>
             

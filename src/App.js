@@ -2,7 +2,7 @@
 import './Estilos/app.scss'
 //--imports
 import React,{useState} from 'react';
-import Listado from './Components/ListadoHeroes';
+import Buscador from './Components/Buscador';
 import Form from './Components/Form';
 import {
   BrowserRouter as Router,
@@ -30,6 +30,7 @@ function App() {
     work:" "
   });
   const [superHeroeData, setSuperHeroeData] = useState([]);
+  const [arrayTeam, setArrayTeam] = useState([])
   const [searchText, setSearchText] = useState('');  
   const loguearse = () => {window.location ='/login'; }
   const chequeoConstante = () => { setInterval(chequeoInicialToken, 10000)} 
@@ -75,8 +76,8 @@ window.onload = setTimeout(chequeoConstante, 5000);
       .catch(err => console.log(err));     
       
       }
-      function agregarId(team){       
-        console.log(team)
+      function agregarId(team){    
+        setArrayTeam(team)  
         if (!(team.length === 0)){
           let  url = `https://superheroapi.com/api/499066611225583/${team}`;
           getData(url); 
@@ -107,7 +108,7 @@ window.onload = setTimeout(chequeoConstante, 5000);
         </Route>
 
         <Route path="/buscador">
-          <Listado  
+          <Buscador  
           /* agregarId={agregarId} */
           searchText={searchText} 
           handleChange={handleChange}
@@ -123,7 +124,7 @@ window.onload = setTimeout(chequeoConstante, 5000);
           <HomeInfo/>
           <Team
           info={info} 
-          team={team}     
+          arrayTeam={arrayTeam}     
           />
         </Route>
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 
 function FetchData(props) {
-   const { team } = props;
+   
     let url = `https://superheroapi.com/api/499066611225583/${props.heroeId}`; 
     const [heroe, setHeroe] = useState({
         name: " ",
@@ -26,9 +26,9 @@ function FetchData(props) {
          .then(data => setHeroe(data))
          .catch(err => console.log(err));
        }
-       if (!(team === undefined)){
+      
          getData(url)
-       }
+      
        
        
 
