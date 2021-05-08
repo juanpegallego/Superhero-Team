@@ -5,15 +5,41 @@ import FetchData from './FetchData';
 
 
 const  Hero = (props) => {    
+  const { item, url } = props; 
   const [isActive, setActive] = useState("hide");  
-  const handleToggle = () => {setActive(!isActive)};  
-  const { info } = props; 
+  const handleToggle = () => {setActive(!isActive)}; 
+  
+  const [info, setInfo] = useState({
+    id:" ",
+    name: " ",
+    image:" ",
+    powerstats:" " ,
+    biography:" ",
+    appearance:" ",
+    work:" "
+  });  
+  
+  
 
-
-   
+ 
+  const getData = async  (url) => {
+    await fetch(url, {mode:'cors'})
+    .then(response => {
+      if (!response.ok) throw Error(response.status);
+      return response
+    }) 
+    .then(res => res.json())
+    .then(data => setInfo(data))    
+    .catch(err => console.log(err))    
+         
+    }
+      
+  getData(url)
 
     return (        
         <div className='card-container'>
+          
+            
             <Card 
               className='card'
               name={info.name}
@@ -30,10 +56,11 @@ const  Hero = (props) => {
               boton={isActive ? "Ver Detalle  " : "_"}
                 /* eliminar={eliminar}   */
             />
-            <FetchData
+          <FetchData
               className={isActive ? "hide" : "lista-datos-extra"}
-              heroeId={info.id}
-            />   
+              heroeId={item}
+              item={item}
+            />    
         </div>      
       );    
   }

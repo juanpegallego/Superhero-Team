@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 function FetchData(props) {
    
-    let url = `https://superheroapi.com/api/499066611225583/${props.heroeId}`; 
+    let url = `https://superheroapi.com/api/499066611225583/${props.item}`; 
     const [heroe, setHeroe] = useState({
         name: " ",
         image:" ",
@@ -19,15 +19,19 @@ function FetchData(props) {
          return res;
        }
        
-        function getData(x){
-         fetch(x, {mode:'cors'})
+const getData = async (x) =>{
+      await fetch(x, {mode:'cors'})
          .then(handleErrors)  
          .then(res => res.json())
          .then(data => setHeroe(data))
-         .catch(err => console.log(err));
+         .catch(err => console.log(err))
        }
-      
-         getData(url)
+
+
+       if(props.item){
+        getData(url)
+       }
+         
       
        
        

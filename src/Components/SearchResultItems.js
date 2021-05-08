@@ -1,10 +1,9 @@
 import React from 'react';
 
 const SearchResultItems = (props) => {
-    const {data, agregarTeam} = props; 
+    const { data, agregarTeam  } = props;     
     
     
-     
     return ( 
         
             <div className="search-result">
@@ -23,7 +22,7 @@ const SearchResultItems = (props) => {
                         
                     <button 
                         className="btn btn-success"
-                        onClick={(e) => agregarTeam(data.id)}
+                        onClick={e => agregarTeam(data.id)}
                             >Agregar
                     </button>
                    

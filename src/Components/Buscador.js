@@ -1,17 +1,17 @@
 import React from 'react';
 
 
-const Listado = (props) => {
+const Buscador = (props) => {
 const {handleChange, searchText} = props;      
 
     return ( 
         <div className='buscador-container' >
             <form >
-                <h2>Busca los heroes para tu equipo</h2>
+                <h2>Selecciona los heroes de tu equipo</h2>
                 <input  
                         id='search-bar'
                         type='search'
-                        placeholder="Escribi aca el nombre de tu heroe"
+                        placeholder='Escribi aca el nombre de tu heroe'
                         onChange={handleChange}
                         value={searchText}
                         >
@@ -22,4 +22,4 @@ const {handleChange, searchText} = props;
      );
 }
  
-export default Listado;
+export default Buscador;

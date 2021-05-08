@@ -23,9 +23,9 @@ import Formulario from './Formulario';
   }
 
   if(token){
-    alert('Bienvenido nuevamente!')
+    
     window.localStorage.setItem('tokenId', token);
-    window.location='/buscador' ;
+     ;
     
   }
   
